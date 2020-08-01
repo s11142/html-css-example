@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>ご利用アンケート</title>
+
+    <!-- bootstrapのCDNを利用（stylesheetの前に記述) 。ちなみにBootStrapを利用すれば自動でリセットされるのでsanitize.cssとかをimportする必要はなし。-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- BootStrapでは画面全体(container)をcontainerで囲む必要がある。containerを指定するだけでBootStrapが自動で余白などのスタイルを調整してくれる。  -->
+    <div class="container">
+        <header>
+            <!-- クラス名rowはBootStrapで決められた名前 -->
+            <div class="row">
+                <!-- sm 780pxより大きい場合に以下の比率で適用する。780pxよりも小さい場合は一行ずつ表示する。 md, ,  -->
+                <div class="col-sm-6">
+                    <h1>ご利用アンケート</h1>
+                </div>
+                <div class="col-sm-6 align-right">
+                    <a href="/">HOMEへ戻る</a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- containerの中にhrが入っていると、画面いっぱいに線を引くことができない。hrを画面いっぱい広げるため、containerから出す -->
+    <hr>
+
+    <div class="container">
+        <!-- フォームの送信先と送信方法 -->
+        <form class="row" action="https://book.h2o-space.com/html/form.php" method="post">
+            <div class="col-sm-8 col-sm-offset-2">
+                <p>この度は、本書をご利用いただきありがとうございます。恐れ入りますが、以下のフォームにご記入いただき、送信していただけると幸いです。</p>
+
+                <!-- labelとinputがセットになったものをdiv class=form-groupで包括することで、レイアウトが調整しやすい。 -->
+                <div class="form-group">
+                    <!-- class="label label-denger"はBootStrapの仕様 -->
+                    <label for="name">お名前 <span class="label label-danger">必須</span></label>
+                    <!-- class=form-controlを付けることで、BootStrapが公式サイトのFormsに記載されているように幅を広げてくれる -->
+                    <input type="text" id="name" name="name" class="form-control" placeholder="例) 山田 太郎">
+                    <!-- 例)を書くことは大事 -->
+                </div>
+                <!-- ドロップダウンメニューを作成 -->
+                <div class="form-group">
+                    <label for="job">ご職業 <span class="label label-danger">必須</span></label>
+                    <select id="job" class="form-control" name="job">
+                        <option value="">選択してください</option>
+                        <option value="会社員">会社員</option>
+                        <option value="学生">学生</option>
+                        <option value="その他">その他</option>
+                    </select>
+                    <!-- ドロップダウンメニュー: 10個くらいの選択肢 -->
+                    <!-- ラジオボタン: 3個くらいの選択肢 -->
+                </div>
+
+
+                <div class="form-group">
+                    <label>知りたい内容（複数回答可）<span class="label label-success">任意</label>
+                    <div class="checkbox">
+                        <!-- ここにlabelを設定することで、HTMLという文字列を押したときにチェックマークがつくようにしている -->
+                        <!-- labelで包括したinputタグはfor属性とid属性を用いて場合と同じ効果があり、HTMLという文字列を押したときにチェックマークがつく。 -->
+
+                        <!-- 一つの質問のnameは統一する（同じ質問のため） -->
+                        <label>
+                            <input type="checkbox" name="q1" value="html">
+                            HTML
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="q1" value="css">CSS
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="q1" value="javascript">JavaScript
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>理解度はいかがですか？</label>
+                    <div>
+                        <!-- class="radio-inlineはラジオボタンを横並びにするためのBootStrapの仕様" -->
+
+                        <label class="radio-inline">
+                            <input type="radio" name="q2" value="1">理解できなかった
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="q2" value="2">だいたい理解出来た
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="q2" value="3">理解できた
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="q2" value="4" checked>回答しない
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">ご意見</label>
+                    <!-- class="form-controlはBootStrapの仕様" -->
+                    <textarea name="message" rows="10" class="form-control"></textarea>
+                </div>
+                <!-- クラス名btn btn-defaultはBootStrapの仕様 -->
+                <button type="submit" class="btn btn-default">送信する</button>
+            </div>
+        </form>
+    </div>
+
+
+    <hr>
+
+    <div class="container">
+    </form>
+
+    <footer>
+        <p>&copy; H2O space</p>
+    </footer>
+</div>
+</body>
+</html>
+
+badge badge-danger
