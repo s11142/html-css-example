@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>TODAY</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>TODAY</h1>
+        </header>
+
+        <div class="container">
+            <!-- ここからJavaSCcriptを記述 -->
+            <script>
+            // document.write('...');
+            // document -> オブジェクト（スクリプトの対象：この場合は画面の表示エリア)
+            // write -> メソッド (スクリプトの命令：この場合は何かを書き込めということ)
+            // ('...') -> パラメータ
+            // 日付を表示する
+            // Dateインスタンスを生成し、定数todayに代入
+                const today = new Date();
+                const todayHtml = (`${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`);
+                // const newyear = new Date(2019, 1, 1);
+                document.write(`<p class="date">Today is ${todayHtml}.`);
+                // document.write(`<p>元旦は、${newyear.getDate()}日です。`);
+                // var -> variableの略で変数を意味する
+                // varとletの違い
+                // let：ブロックレベルで変数のスコープが定義される。
+                // var：変数のスコープが全体であり、ブロックレベルでない。
+                // letの方が違和感なく使用できる。
+            </script>
+        </div>
+
+    </body>
+</html>
