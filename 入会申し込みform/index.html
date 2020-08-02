@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- スマホの画面に合わせて幅を設定する。 -->
+    <meta name="viewport" content="width=device-width">
+    <!-- titleは基本的にh1タグと同じものを書く -->
+    <title>入会申し込み</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- ブラウザによるcssの自動調整を無効化する -->
+    <link rel="stylesheet" href="./css/sanitize.css">
+  </head>
+  <body>
+    <div class="content">
+      <h1>入会申し込み</h1>
+      <p>入会するには、次のフォームに必要事項をご記入ください</p>
+      <div class="control">
+        <!-- forとidを一致させることでラベルとinputを紐付ける -->
+        <label for="mymail">メールアドレス <span class="required">必須</span></label>
+        <input id="mymail" type="email" name="email">
+      </div>
+      <div class="control">
+        <label for="password">パスワード <span class="required">必須</span></label>
+        <input id="password" type="password" name="password">
+      </div>
+      <div class="control">
+        <button type="submit">登録する</button>
+      </div>
+      <!-- <input type="submit" value="送信">  古い書き方のため、使わないほうがいい。-->
+    </div>
+  </body>
+</html>
