@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>TIMER</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <p id="timer">00:00:00</p>
+            <div>
+                <!-- 青色の大きなボタンを作る(bootstrap) -->
+                <button id="start_stop" class="btn btn-lg btn-primary">START</button>
+            </div>
+        </div>
+        <script>
+            // // 1桁の数値にゼロを追加する関数
+            // const addZero = (value) => {
+            //     if (value < 10) {
+            //         value = "0" + value;
+            //     }
+            //     return value;
+            // };
+            // // クリックがあったときに、無名関数を実行する（関数は無名関数じゃなくてももちろんOK)
+            // document.getElementById("start_stop").addEventListener("click", () =>{
+            //     let now = new Date();
+            //     let seconds = now.getSeconds();    // 秒を取得
+            //     seconds = addZero(seconds);
+            //     let minutes = now.getMinutes();    // 分を取得
+            //     minutes = addZero(minutes);
+            //     let hours = now.getHours();        // 時間を取得
+            //     hours = addZero(hours);
+            //
+            // // id="timer"の要素を取得し、innerHTML（プロパティ->画面に表示されている内容）を書き換える。
+            //     document.getElementById("timer").innerHTML = `${hours}:${minutes}:${seconds}`;
+            // });
+
+            let start;
+            let timer_id;
+
+            // STARTがクリックされたとき、Dateインスタンスを作成する。これにより、クリックしたタイミングでの時間が保持される。
+            document.getElementById("start_stop").addEventListener("click", function() {
+                if (this.innerHTML === "START") {
+                    start = new Date();
+
+                    // 関数名, ミリ秒を指定して間隔を指定する。10msecごとに、goTimerを実施する。
+                    timer_id = setInterval(goTimer, 10);
+
+                    // STOPボタンにする
+                    // this -> start_stopを持った要素自体のこと(this === document.getElementById("start_stop")に置き換えてもうごくよ)
+                    this.innerHTML = 'STOP';
+                    // springbootのbtn-primary（青いボタン）を削除
+                    this.classList.remove('btn-primary');
+                    // springbootのbtn-danger(赤いボタン)を追加
+                    this.classList.add('btn-danger');
+                } else {
+                    // STARTボタンに戻す
+                    // timer_id -> setIntervalの返り値
+                    clearInterval(timer_id); //windowオブジェクトのメソッド。インターバルを停止する。
+                    this.innerHTML = "START";
+                    this.classList.remove("btn-danger");
+                    this.classList.add("btn-primary");
+
+                }
+            });
+
+            let addZero = (value) => {
+                if (value < 10) {
+                    value = "0" + value;
+                }
+                return value;
+            };
+
+
+            let goTimer = () => {
+                const now = new Date();
+
+                const msec = now.getTime() - start.getTime();
+                // Math.floor(数値) -> 小数点以下を切り捨てて整数で表示
+                let sec = Math.floor(msec / 1000);
+                let minute = Math.floor(sec / 60);
+                let hour = Math.floor(minute / 60);
+
+                // 1分以上経ったとき、秒数をリセットする。
+                sec = sec - minute * 60;
+                minute = minute - hour * 60;
+
+                // 数値が一桁の場合、0を先頭に追加
+                sec = addZero(sec);
+                minute = addZero(minute);
+                hour = addZero(hour);
+
+                document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + sec;
+            };
+
+
+
+
+
+        </script>
+    </body>
+</html>
